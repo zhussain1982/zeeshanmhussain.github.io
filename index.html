@@ -13,7 +13,7 @@
 <meta name="branch:deeplink:body_index" content="1" /> 
   <meta name="branch:deeplink:color_index" content="1" /> 
   <title>Home</title>
-  <script>
+ <script>
     function getParameterByName(name) {
     if (name !== "" && name !== null && name != undefined) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -48,7 +48,34 @@
     }
     else
     {
-         branch.init('key_live_ihIJdypmJaY3fhhNgf3XLeglzqc3YkQk');
+        var options = { no_journeys: false };
+
+         branch.init('key_live_ihIJdypmJaY3fhhNgf3XLeglzqc3YkQk',options,function(err, data) {
+  console.log(err, data);
+
+  var linkData = {
+  campaign: 'Campaign 1234',
+  channel: 'MeMeMe',
+  feature: 'Featuring Zee',
+  stage: 'new user',
+  tags: [ 'tag1', 'tag2', 'tag3' ],
+  alias: '',
+  data: {
+    'custom_bool': true,
+    'custom_int': Date.now(),
+    'custom_string': 'hello',
+    '$og_title': 'Title',
+    '$og_description': 'Description',
+    '$og_image_url':'http://lorempixel.com/400/400'
+  }
+};
+
+branch.link(linkData, function(err, link) {
+  console.log(link);
+});
+
+
+});
     }
 
   </script>
